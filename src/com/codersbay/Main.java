@@ -1,17 +1,19 @@
 package com.codersbay;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void insertionSort(int[] array) {
         int n = array.length;
-        for (int j = 1; j < n; j++) {
-            int key = array[j];
-            int i = j - 1;
-            while ((i > -1) && (array[i] > key)) {
-                array[i + 1] = array[i];
-                i--;
+        for (int startOfUnsorted = 1; startOfUnsorted < n; startOfUnsorted++) {
+            int nextUnsortedElement = array[startOfUnsorted];
+            int greatestSortedElementIndex = startOfUnsorted - 1;
+            while ((greatestSortedElementIndex > -1) && (array[greatestSortedElementIndex] > nextUnsortedElement)) {
+                array[greatestSortedElementIndex + 1] = array[greatestSortedElementIndex];
+                greatestSortedElementIndex--;
             }
-            array[i + 1] = key;
+            array[greatestSortedElementIndex + 1] = nextUnsortedElement;
         }
     }
 
@@ -20,8 +22,6 @@ public class Main {
         int[] unsortedArray = {9, 14, 3, 2, 43, 11, 58, 22};
         insertionSort(unsortedArray);
 
-        for(int i:unsortedArray){
-            System.out.print(i+" ");
+        System.out.println(Arrays.toString(unsortedArray));
         }
     }
-}
